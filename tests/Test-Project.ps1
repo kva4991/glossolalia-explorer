@@ -1,4 +1,11 @@
 ﻿#Requires -Version 5.1
+<#
+.SYNOPSIS
+Проверяет прямой запуск и пакетную обработку через управляемые ответы внешних команд
+.DESCRIPTION
+Проверяет имена, повторное использование WAV, ошибки и формат отчёта без модели
+Создаёт синтетические файлы во временной папке и не оценивает языковую точность
+#>
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $root "src\ProfileTools.ps1")
@@ -33,6 +40,25 @@ Assert-True (($info.Unsupported -join ",") -ceq "ɬ") "Syriac unsupported symbol
 
 $fixtureRoot = Join-Path ([IO.Path]::GetTempPath()) ("glossolalia-tests-" + [guid]::NewGuid().ToString("N"))
 $null = [IO.Directory]::CreateDirectory($fixtureRoot)
+
+# Прямой -File проверяет привязку параметров PowerShell 5.1, которую не покрывает подменённый scriptblock
+$processInfo = New-Object Diagnostics.ProcessStartInfo
+$processInfo.FileName = (Get-Process -Id $PID).Path
+$processInfo.Arguments = '-NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $root "Start-Glossolalia.ps1") + '" -CheckOnly -PythonPath "' + (Join-Path $fixtureRoot "missing-python.exe") + '"'
+$processInfo.UseShellExecute = $false
+$processInfo.CreateNoWindow = $true
+$processInfo.RedirectStandardOutput = $true
+$processInfo.RedirectStandardError = $true
+$process = [Diagnostics.Process]::Start($processInfo)
+try {
+    $directOutput = $process.StandardOutput.ReadToEnd() + $process.StandardError.ReadToEnd()
+    $process.WaitForExit()
+    Assert-True ($process.ExitCode -ne 0) "Missing Python unexpectedly accepted"
+    Assert-True ($directOutput.Contains("Python") -and -not $directOutput.Contains("Split-Path")) "Direct launch failed before checking Python"
+} finally {
+    $process.Dispose()
+}
+
 $utf8 = New-Object Text.UTF8Encoding($false)
 $newline = [Environment]::NewLine
 foreach ($case in @(

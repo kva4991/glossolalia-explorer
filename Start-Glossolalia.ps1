@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [string[]]$AudioPath,
-    [string]$InitialDirectory = (Split-Path -Parent $PSScriptRoot),
+    [string]$InitialDirectory,
     [string]$PythonPath,
     [string]$FfmpegPath = "ffmpeg",
     [string[]]$Modes,
@@ -11,6 +11,10 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+# Windows PowerShell 5.1 определяет каталог скрипта после привязки параметров
+if (-not $InitialDirectory) { $InitialDirectory = Split-Path -Parent $PSScriptRoot }
+
 . (Join-Path $PSScriptRoot "src\ProfileTools.ps1")
 
 if (-not $PythonPath) {
