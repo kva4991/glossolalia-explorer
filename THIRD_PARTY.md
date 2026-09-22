@@ -6,6 +6,9 @@ MIT в этом репозитории относится к его собств
 | --- | --- | --- |
 | Allosaurus 1.0.2 | Внешний процесс фонетического распознавания | [Репозиторий](https://github.com/xinjli/allosaurus), [GPL-3.0](https://github.com/xinjli/allosaurus/blob/master/LICENSE) |
 | Предобученная uni2005 | Веса универсальной модели, загружаемые Allosaurus | [Официальные релизы](https://github.com/xinjli/allosaurus/releases), условия соответствующего артефакта |
+| ZIPA Small CRCTC NS | Внешняя ONNX-модель распознавания звуков | [Модель и её файлы](https://huggingface.co/anyspeech/zipa-small-crctc-ns-700k), [код ZIPA и MIT](https://github.com/lingjzhu/zipa/blob/main/LICENSE); MIT кода не заменяет условия весов |
+| Wav2Vec2Phoneme | Внешняя модель Meta с фонетическим выходом | [Карточка модели, Apache-2.0](https://huggingface.co/facebook/wav2vec2-xlsr-53-espeak-cv-ft) |
+| ONNX Runtime, Lhotse, Transformers, truststore | Исполнение и загрузка новых движков | [ONNX Runtime](https://github.com/microsoft/onnxruntime), [Lhotse](https://github.com/lhotse-speech/lhotse), [Transformers](https://github.com/huggingface/transformers), [truststore](https://github.com/sethmlarson/truststore) |
 | FFmpeg | Преобразование аудио | [Лицензирование FFmpeg](https://ffmpeg.org/legal.html); зависит от состава сборки |
 | Python, PyTorch и зависимости Allosaurus | Исполнение распознавателя | Условия соответствующих проектов и установленных пакетов |
 

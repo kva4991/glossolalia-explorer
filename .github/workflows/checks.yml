@@ -13,6 +13,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Validate phonetic queue without models
+        shell: pwsh
+        run: python -B -X utf8 ./tests/test_phonetic_engine.py
       - name: Validate with Windows PowerShell 5.1
         shell: powershell
         run: |

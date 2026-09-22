@@ -1,0 +1,22 @@
+{
+  "zipa": {
+    "label": "ZIPA",
+    "repository": "anyspeech/zipa-small-crctc-ns-700k",
+    "revision": "86ce6920bcf23f27f449fd21b77b9886804bd734",
+    "files": [
+      "model.onnx",
+      "tokens.txt"
+    ]
+  },
+  "w2v2": {
+    "label": "W2V2",
+    "repository": "facebook/wav2vec2-xlsr-53-espeak-cv-ft",
+    "revision": "2c733782da5604684829819a5eb744c193fe9398",
+    "files": [
+      "config.json",
+      "preprocessor_config.json",
+      "vocab.json",
+      "pytorch_model.bin"
+    ]
+  }
+}

@@ -18,6 +18,8 @@ __pycache__/
 !/lat.txt
 !/mandaic.txt
 !/requirements.txt
+!/requirements/zipa.txt
+!/requirements/w2v2.txt
 /private/
 /recordings/
 /results/

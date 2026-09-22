@@ -15,7 +15,7 @@ function Assert-True {
     if (-not $Condition) { throw $Message }
 }
 
-foreach ($relative in @("Start-Glossolalia.ps1", "Setup.ps1", "src\ProfileTools.ps1", "tests\Test-Project.ps1", "tests\Smoke-Allosaurus.ps1")) {
+foreach ($relative in @("Start-Glossolalia.ps1", "Setup.ps1", "src\ProfileTools.ps1", "tests\Test-Project.ps1", "tests\Smoke-Allosaurus.ps1", "Setup-PhoneticEngines.ps1", "Start-ZIPA.ps1", "Start-W2V2.ps1", "src\PhoneticTools.ps1")) {
     $tokens = $null
     $errors = $null
     $null = [Management.Automation.Language.Parser]::ParseFile((Join-Path $root $relative), [ref]$tokens, [ref]$errors)

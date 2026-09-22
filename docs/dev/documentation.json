@@ -196,6 +196,22 @@
       "status": "generated",
       "purpose": "Автоматически создаваемая навигация из реестра",
       "tags": []
+    },
+    {
+      "path": "docs/PHONETIC-ENGINES.md",
+      "title": "Установка и запуск ZIPA и Wav2Vec2Phoneme",
+      "status": "current",
+      "purpose": "Воспроизводимая установка и отдельные результаты двух моделей",
+      "tags": [
+        "engines"
+      ]
+    },
+    {
+      "path": "docs/architecture/decisions/0004-phonetic-engines.md",
+      "title": "ADR-0004: Отдельные движки ZIPA и Wav2Vec2Phoneme",
+      "status": "current",
+      "purpose": "Причины разделения окружений и формата результатов",
+      "tags": []
     }
   ]
 }
