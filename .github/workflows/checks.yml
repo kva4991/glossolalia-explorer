@@ -9,13 +9,13 @@ permissions:
   contents: read
 
 jobs:
-  powershell:
+  windows:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        shell: [powershell, pwsh]
     steps:
       - uses: actions/checkout@v4
-      - name: Validate project and batch behavior
-        shell: ${{ matrix.shell }}
+      - name: Validate with Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/Test-Project.ps1
+      - name: Validate with PowerShell 7
+        shell: pwsh
         run: ./tests/Test-Project.ps1
