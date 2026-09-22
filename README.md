@@ -79,7 +79,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Start-Glossolalia.ps1 -Che
 
 Полные аудио и расшифровки остаются локально. Публичные примеры сохраняют статус авторских прочтений до независимой проверки.
 
+## Документация
+
+[Указатель документации](docs/README.md) содержит маршруты для пользователя и разработчика. [Карта меток](docs/dev/tag-map.md) помогает найти владельца темы; [архитектурные решения](docs/architecture/decisions/README.md) объясняют устойчивые выборы. Порядок сопровождения описан в [стандарте](docs/DOCUMENTATION.md).
+
 ## Разработка и проверка
+
+Точные команды аудита документации и тестов, зависимости и границы проверки: [TESTING](docs/TESTING.md).
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\Test-Project.ps1

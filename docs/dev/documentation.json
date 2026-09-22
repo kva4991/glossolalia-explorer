@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "path": "README.md",
+      "title": "Glossolalia Explorer",
+      "status": "current",
+      "purpose": "Установка и работа Windows-версии",
+      "tags": [
+        "desktop"
+      ]
+    },
+    {
+      "path": "README-profiles.md",
+      "title": "Экспериментальные неофициальные профили",
+      "status": "current",
+      "purpose": "Состав, происхождение и ограничения наборов звуков",
+      "tags": [
+        "profiles"
+      ]
+    },
+    {
+      "path": "docs/README.md",
+      "title": "Документация Glossolalia Explorer",
+      "status": "current",
+      "purpose": "Маршруты чтения",
+      "tags": [
+        "docindex"
+      ]
+    },
+    {
+      "path": "docs/METHODOLOGY.md",
+      "title": "Методика исследования",
+      "status": "current",
+      "purpose": "Последовательность эксперимента и границы выводов",
+      "tags": [
+        "method"
+      ]
+    },
+    {
+      "path": "docs/LITERATURE.md",
+      "title": "Литература проекта: примеры понимания смысла",
+      "status": "reference",
+      "purpose": "Короткие авторские примеры и история уточнений",
+      "tags": [
+        "examples"
+      ]
+    },
+    {
+      "path": "docs/BIBLICAL_CONTEXT.md",
+      "title": "Библейский и святоотеческий контекст",
+      "status": "reference",
+      "purpose": "Проверенные ссылки и границы их применения",
+      "tags": [
+        "sources"
+      ]
+    },
+    {
+      "path": "docs/для справки (от разработчика).md",
+      "title": "Для справки (от разработчика)",
+      "status": "reference",
+      "purpose": "Личные заметки и архив гипотез",
+      "tags": [
+        "notes"
+      ]
+    },
+    {
+      "path": "docs/ANDROID.md",
+      "title": "Android-приложение Glossolalia Explorer",
+      "status": "plan",
+      "purpose": "Сценарий будущего приложения и нерешённые вопросы",
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "title": "Вход в разработку",
+      "status": "process",
+      "purpose": "Текущее устройство и выбор контекста задачи",
+      "tags": [
+        "devstart"
+      ]
+    },
+    {
+      "path": "docs/DOCUMENTATION.md",
+      "title": "Система документации",
+      "status": "process",
+      "purpose": "Правила сопровождения и происхождение подхода",
+      "tags": [
+        "docs"
+      ]
+    },
+    {
+      "path": "docs/CHANGE_IMPACT.md",
+      "title": "Сопутствующие изменения",
+      "status": "process",
+      "purpose": "Связи кода, документации и проверок",
+      "tags": [
+        "impact"
+      ]
+    },
+    {
+      "path": "docs/TESTING.md",
+      "title": "Проверка проекта и документации",
+      "status": "process",
+      "purpose": "Команды, окружение и границы проверок",
+      "tags": [
+        "testing"
+      ]
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "title": "Проверка версии 0.1.0",
+      "status": "evidence",
+      "purpose": "Результаты и незакрытые проверки от 22.09.2026",
+      "tags": [
+        "validation"
+      ]
+    },
+    {
+      "path": "docs/architecture/decisions/README.md",
+      "title": "Архитектурные решения",
+      "status": "process",
+      "purpose": "Индекс ADR и порядок замены решений",
+      "tags": [
+        "adr"
+      ]
+    },
+    {
+      "path": "docs/architecture/decisions/0001-phonetic-boundary.md",
+      "title": "ADR-0001: Границы фонетического исследования",
+      "status": "current",
+      "purpose": "Почему транскрипция, гипотеза и толкование разделены",
+      "tags": []
+    },
+    {
+      "path": "docs/architecture/decisions/0002-android-sharing.md",
+      "title": "ADR-0002: Передача Android-результата во внешний чат",
+      "status": "plan",
+      "purpose": "Выбранный обмен текстом; реализации ещё нет",
+      "tags": []
+    },
+    {
+      "path": "docs/architecture/decisions/0003-documentation-system.md",
+      "title": "ADR-0003: Документация по подходу Sheepfold",
+      "status": "current",
+      "purpose": "Основание устройства документации",
+      "tags": []
+    },
+    {
+      "path": "docs/architecture/decisions/template.md",
+      "title": "Шаблон архитектурного решения",
+      "status": "template",
+      "purpose": "Структура будущих ADR",
+      "tags": []
+    },
+    {
+      "path": "AGENTS.md",
+      "title": "Работа с Glossolalia Explorer",
+      "status": "process",
+      "purpose": "Ограничения проекта и маршрут чтения для агентов",
+      "tags": []
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "title": "Участие в проекте",
+      "status": "process",
+      "purpose": "Как вносить изменения",
+      "tags": []
+    },
+    {
+      "path": ".agents/skills/glossolalia-documentation/SKILL.md",
+      "title": "Сопровождение документации Glossolalia Explorer",
+      "status": "process",
+      "purpose": "Короткий маршрут навыка к стандарту",
+      "tags": []
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "title": "Сторонние компоненты",
+      "status": "reference",
+      "purpose": "Границы MIT и источники условий зависимостей",
+      "tags": []
+    },
+    {
+      "path": "CHANGELOG.md",
+      "title": "Изменения",
+      "status": "reference",
+      "purpose": "История изменений проекта",
+      "tags": []
+    },
+    {
+      "path": "docs/dev/tag-map.md",
+      "title": "Карта меток и каталог документов",
+      "status": "generated",
+      "purpose": "Автоматически создаваемая навигация из реестра",
+      "tags": []
+    }
+  ]
+}
