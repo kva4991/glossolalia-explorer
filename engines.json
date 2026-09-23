@@ -1,4 +1,10 @@
 {
+  "allosaurus": {
+    "label": "Allosaurus",
+    "repository": "allosaurus/uni2005",
+    "revision": "Allosaurus 1.0.2; uni2005",
+    "files": []
+  },
   "zipa": {
     "label": "ZIPA",
     "repository": "anyspeech/zipa-small-crctc-ns-700k",

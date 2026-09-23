@@ -1,0 +1,109 @@
+# ============================================================
+# НАУЧНЫЙ ОТЧЁТ: Фонология исследуемого языка
+# ============================================================
+#
+# На основе анализа расшифровок и научной литературы
+#
+# ИСТОЧНИКИ:
+# [1] Khan, G. "The Tiberian Pronunciation Tradition of Biblical Hebrew" (2020)
+#     — Tiberian qamets = [ɔ] (back half-open rounded), distinct from patah [a]
+#     — Babylonian qamets = [o], reflected in Arabic transcriptions with waw
+#     — Babylonian tradition: patah and segol merged into one vowel
+#
+# [2] Khan, G. & Elsa, "Sound Changes in Pre-Masoretic Reading Tradition" (2019)
+#     — bgdkpt spirantization was active by 6th c. BCE
+#     — Before spirantization: bet = [b]/[w], not [v]
+#     — Biblical Aramaic preserves pre-spirantization features
+#
+# [3] Benner, J. "Ancient Hebrew Lexicon of the Bible"
+#     — Waw original sound = [w], retained in Modern Arabic
+#     — "The original name of this letter would have been 'waw' not 'vav'"
+#     — Waw as consonant = [w], as vowel = [ow] or [uw]
+#
+# [4] Wikipedia: Begadkefat
+#     — Spirantization developed during Biblical Hebrew period
+#     — Old Aramaic phonemes /θ/, /ð/ disappeared by 7th c. BCE
+#     — Yemenite Hebrew preserves all begadkefat distinctions
+#
+# [5] Morag, "Pronunciations of Hebrew" (Jewish Virtual Library)
+#     — Yemenite pronunciation reflects Babylonian tradition
+#     — Babylonian: no distinction between patah and segol
+#     — Some Yemenite groups: holem = tsere
+#     — shureq/qibbuts = [y] (front rounded!) in some traditions
+#
+# [6] "Sound Changes in the (Pre-)Masoretic Reading Tradition" (ResearchGate)
+#     — Secunda (Origen's Hexapla): 7-vowel system with length
+#     — No qamets quality [ɔ] in Secunda or Jerome — only [a] and [o]
+#     — Babylonian tradition DOES have qamets quality [ɔ]
+#
+# [7] Wikipedia: Kamatz
+#     — Qamatz qatan = [o] in closed syllable
+#     — Qamatz gadol = [a] in open syllable (modern)
+#     — Historical: short *a → long *o (Canaanite shift) → merged to [ɔ]
+#
+# [8] Aramaic phonology (Paul Marciano Wiki)
+#     — ר = alveolar trill (usually)
+#     — ו = [w] in classical Aramaic (listed as approximant)
+#     — Emphatic consonants: pharyngealization/velarization
+#     — Some modern dialects: h → zero, hu → ow
+#
+# [9] The Phonology of Maaloula Aramaic (ResearchGate, 2024)
+#     — /k/ described as "strongly palatalized" (Bergsträsser)
+#     — Palatalization is contrastive in Maaloula
+#     — /p/ and /b/ bilabial stops (voicing contrast)
+#
+# [10] Palatalization (Wikipedia)
+#     — Assyrian Neo-Aramaic: k→[tʃ], t→[ʃ], g→[dʒ]
+#     — Palatalization before front vowels is common in Semitic
+#     — Hoberman (1985): palatalization in Neo-Aramaic of N. Iraq
+#
+# [11] Wiktionary: יהוה (YHWH)
+#     — Reconstructed pre-400 BCE: /jahˈwɛː/
+#     — יָהּ (Yah) = short form
+#     — Samaritan: yâhweh
+#     — Moabite tablet (8th c. BCE): Yahu (vav as vowel, final h silent)
+#
+# [12] Hoberman (1989): Initial Consonant Clusters
+#     — bar/bra from *bn- (son) — initial cluster survived into Aramaic
+#     — *n → r in Aramaic as second member of initial cluster
+#
+# КЛЮЧЕВЫЕ ВЫВОДЫ:
+#
+# 1. ВАВИЛОНСКАЯ ТРАДИЦИЯ (наша основа):
+#    - Камац = [o], не [a] ✓ (подтверждено арабскими транскрипциями)
+#    - Патах и сегол слиты ✓ (Йеменская традиция)
+#    - Шурек/кубуц = [y] в некоторых общинах ✓
+#    - Холам = цере в некоторых общинах ✓
+#
+# 2. ДО-СПИРАНТИЗАЦИЯ (наш период):
+#    - Бет = [b]/[w], не [v] ✓
+#    - Вав = [w], не [v] ✓
+#    - Спирантизация активна с 6 в. до н.э., но вав=[w] сохраняется дольше
+#
+# 3. НЕОБЫЧНЫЕ ЧЕРТЫ (требуют объяснения):
+#    - Йотированное р [rʲ] — не описано в литературе для арамейского
+#      → Возможно: влияние субстрата или изолированное развитие
+#      → Ближайший аналог: Maaloula "strongly palatalized" /k/
+#
+#    - יָהּ = [ju] "Ю" — не описано
+#      → Возможный механизм: лабиализация под влиянием вав=[w]
+#      → Или: отражение формы "Yahu" (Моавитский камень, 8 в. до н.э.)
+#      → [ja] + огубление → [jɔ] → [ju]
+#
+#    - Протетический гласный перед алефом/вавом
+#      → Описано для египетского (epenthetic /ɛ/)
+#      → В арамейском: "hu → ow" (некоторые диалекты теряют h, добавляют гласный)
+#      → Возможно: сохранение протетического гласного как архаизм
+#
+#    - Неопределённые/промежуточные гласные
+#      → Вавилонская традиция: меньше различий между гласными
+#      → Патах=сегол (один звук), холам=цере (в некоторых общинах)
+#      → Промежуточные звуки — естественны для системы с меньшим набором
+#      → Также: шва = [ə]/[a]/ноль — зона неопределённости
+#
+# 4. ПАЛЕОГЕОГРАФИЯ:
+#    - Вавилонская традиция → Йемен
+#    - Самаритянская традиция: waw=[w], qamats как [a] (отличается!)
+#    - Наша традиция: вав=[w] + камац=[o] = Вавилонская + архаичные черты
+#    - Двоязычие (арамейский + греческий): указывает на эллинистический период
+#    - Вероятный период: II в. до н.э. — I в. н.э. (эллинистический, до Тиверийской)

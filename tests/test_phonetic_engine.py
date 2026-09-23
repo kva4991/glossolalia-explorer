@@ -12,6 +12,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 spec = importlib.util.spec_from_file_location("phonetic_engine", ROOT / "src" / "phonetic_engine.py")
 engine = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(engine)
@@ -93,6 +94,8 @@ class PhoneticTests(unittest.TestCase):
                 patch.object(engine, "load_config", return_value=config),
                 patch.object(engine, "validate_installation"),
                 patch.object(engine, "Recognizer"),
+                patch.object(engine, "PauseDetector"),
+                patch.object(engine, "render_report", return_value="test"),
                 patch.object(engine, "read_audio", side_effect=[ValueError("invalid"), [0] * 16000]),
                 patch.object(engine, "transcribe", return_value=[(0, 1, ["a"])]),
                 contextlib.redirect_stdout(io.StringIO()) as stdout,

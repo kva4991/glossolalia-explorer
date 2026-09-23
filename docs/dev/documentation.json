@@ -2,6 +2,45 @@
   "version": 1,
   "documents": [
     {
+      "path": "docs/LANGUAGE-PROFILES.md",
+      "title": "Пользовательский язык для трёх моделей",
+      "status": "current",
+      "purpose": "Необязательное ограничение фонетических меток трёх моделей и его границы",
+      "tags": ["languageprofiles"]
+    },
+    {
+      "path": "docs/architecture/decisions/0006-custom-language-profiles.md",
+      "title": "ADR-0006: Пользовательские наборы для трёх моделей",
+      "status": "current",
+      "purpose": "Причины применения профиля до декодирования и отделения результатов",
+      "tags": []
+    },
+    {
+      "path": "profiles/reference/2026-09-23/README.md",
+      "title": "Авторские фонетические шаблоны от 23.09.2026",
+      "status": "reference",
+      "purpose": "Исходные шаблоны, контрольные суммы и границы применения авторских гипотез",
+      "tags": [
+        "phonetictemplates"
+      ]
+    },
+    {
+      "path": "docs/PAUSES.md",
+      "title": "Три модели и разметка пауз",
+      "status": "current",
+      "purpose": "Общий запуск трёх моделей и паузы внутри транскрипций",
+      "tags": [
+        "pauses"
+      ]
+    },
+    {
+      "path": "docs/architecture/decisions/0005-shared-pauses.md",
+      "title": "ADR-0005: Три транскрипции с общими паузами",
+      "status": "current",
+      "purpose": "Общий детектор, приблизительная привязка и сохранение всех меток",
+      "tags": []
+    },
+    {
       "path": "README.md",
       "title": "Glossolalia Explorer",
       "status": "current",
@@ -44,6 +83,15 @@
       "purpose": "Короткие авторские примеры и история уточнений",
       "tags": [
         "examples"
+      ]
+    },
+    {
+      "path": "docs/LEXICON.md",
+      "title": "Словарь повторяющихся звуковых сочетаний",
+      "status": "reference",
+      "purpose": "Повторяемые фрагменты, лексические гипотезы и накопление примеров",
+      "tags": [
+        "lexicon"
       ]
     },
     {

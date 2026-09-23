@@ -47,6 +47,8 @@ try {
         & $python -B -X utf8 (Join-Path $PSScriptRoot "scripts\install_phonetic_model.py") --engine $name --runtime $RuntimeDirectory
         if ($LASTEXITCODE -ne 0) { throw "Не удалось загрузить модель $name" }
 
+        & (Join-Path $PSScriptRoot "Setup-Pauses.ps1") -RuntimeDirectory $RuntimeDirectory -PythonPath $python
+
         & $python -B -X utf8 (Join-Path $PSScriptRoot "src\phonetic_engine.py") --engine $name --runtime $RuntimeDirectory --check
         if ($LASTEXITCODE -ne 0) { throw "Модель $name установлена, но не прошла проверку загрузки" }
     }

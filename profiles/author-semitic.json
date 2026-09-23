@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "author-semitic",
+  "name": "Авторский семитский",
+  "version": 1,
+  "status": "experimental-unofficial",
+  "sources": [
+    "profiles/reference/2026-09-23/template_model1_w2v2.txt",
+    "profiles/reference/2026-09-23/template_model2_zipa.txt"
+  ],
+  "phones": [
+    "ʔ", "b", "w", "β", "ɡ", "dʒ", "d", "dʲ", "ð", "h", "z", "ħ",
+    "tˤ", "j", "k", "tʃ", "l", "m", "n", "s", "ʕ", "p", "f", "sˤ",
+    "q", "r", "rʲ", "ʃ", "ɕ", "t", "θ", "x", "a", "o", "ɔ", "e",
+    "eː", "ɛ", "i", "iː", "u", "uː", "oː", "ə", "y", "ɨ", "aː",
+    "ja", "jo", "ju", "mː", "lː"
+  ],
+  "aliases": {
+    "ɡ": ["g"]
+  },
+  "tokenizations": {
+    "allosaurus": {
+      "ja": ["j", "a"], "jo": ["j", "o"], "ju": ["j", "u"]
+    },
+    "zipa": {
+      "dʒ": ["d", "ʒ"], "dʲ": ["d", "ʲ"], "rʲ": ["r", "ʲ"],
+      "tʃ": ["t", "ʃ"], "tˤ": ["t", "ˤ"], "sˤ": ["s", "ˤ"],
+      "eː": ["e", "ː"], "iː": ["i", "ː"], "uː": ["u", "ː"],
+      "oː": ["o", "ː"], "aː": ["a", "ː"], "mː": ["m", "ː"],
+      "lː": ["l", "ː"], "ja": ["j", "a"], "jo": ["j", "o"],
+      "ju": ["j", "u"]
+    },
+    "w2v2": {
+      "jo": ["j", "o"]
+    }
+  }
+}

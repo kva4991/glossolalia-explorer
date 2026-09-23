@@ -19,15 +19,26 @@ jobs:
       - name: Validate phonetic queue without models
         shell: pwsh
         run: python -B -X utf8 ./tests/test_phonetic_engine.py
+      - name: Validate repeat counting without models
+        shell: pwsh
+        run: python -B -X utf8 ./tests/test_repeat_index.py
+      - name: Validate pauses and transcription preservation
+        shell: pwsh
+        run: python -B -X utf8 ./tests/test_pause_tools.py
+      - name: Validate experimental phonetic profiles
+        shell: pwsh
+        run: python -B -X utf8 ./tests/test_language_profiles.py
       - name: Validate with Windows PowerShell 5.1
         shell: powershell
         run: |
           ./scripts/Sync-Documentation.ps1
           ./tests/Test-Documentation.ps1
           ./tests/Test-Project.ps1
+          ./tests/Test-ThreeModels.ps1
       - name: Validate with PowerShell 7
         shell: pwsh
         run: |
           ./scripts/Sync-Documentation.ps1
           ./tests/Test-Documentation.ps1
           ./tests/Test-Project.ps1
+          ./tests/Test-ThreeModels.ps1

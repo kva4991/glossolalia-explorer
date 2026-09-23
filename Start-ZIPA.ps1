@@ -6,6 +6,7 @@
 [CmdletBinding()]
 param(
     [string[]]$AudioPath,
+    [string]$Profile,
     [string]$InitialDirectory,
     [string]$RuntimeDirectory,
     [string]$PythonPath,

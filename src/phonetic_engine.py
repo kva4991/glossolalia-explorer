@@ -3,11 +3,15 @@
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
 from datetime import datetime
 from pathlib import Path
+
+from pause_tools import PauseDetector, render_with_pauses
+from language_profiles import load_profile, profile_report_lines, resolve_profile, select_token_ids
 
 SAMPLE_RATE = 16000
 CHUNK_SECONDS = 30
@@ -19,15 +23,17 @@ def load_config(engine):
     return json.loads((project / "engines.json").read_text(encoding="utf-8"))[engine]
 
 
-def decode_ctc(ids, vocabulary, blank_id=0, previous=None):
+def decode_ctc(ids, vocabulary, blank_id=0, previous=None, offsets=None):
     """Удаляет CTC-пустоты и соседние повторы, сохраняя повтор после пустоты."""
     tokens = []
-    for item in ids:
+    for offset, item in enumerate(ids):
         item = int(item)
         if item != previous and item != blank_id:
             token = vocabulary[item]
             if token not in ("<s>", "</s>", "<pad>", "<sos/eos>"):
                 tokens.append(token)
+                if offsets is not None:
+                    offsets.append(offset)
         previous = item
     return tokens, previous
 
@@ -84,6 +90,7 @@ class Recognizer:
         torch.set_num_threads(min(4, os.cpu_count() or 1))
         self.engine = engine
         self.blank_id = 0
+        self.blocked_ids = []
 
         if engine == "zipa":
             import onnxruntime
@@ -130,14 +137,15 @@ class Recognizer:
             scores = outputs[0][0]
             if len(outputs) > 1:
                 scores = scores[:int(outputs[1][0])]
-            return scores.argmax(axis=-1)
+            return select_token_ids(scores, self.blocked_ids)
 
         inputs = self.extractor(samples, sampling_rate=SAMPLE_RATE, return_tensors="pt")
         with torch.inference_mode():
-            return self.model(**inputs).logits[0].argmax(dim=-1).cpu().numpy()
+            scores = self.model(**inputs).logits[0]
+            return select_token_ids(scores, self.blocked_ids).cpu().numpy()
 
 
-def transcribe(samples, recognizer):
+def transcribe(samples, recognizer, token_times=None):
     """Оставляет центральные кадры перекрывающихся окон перед CTC-декодированием."""
     size = CHUNK_SECONDS * SAMPLE_RATE
     context = CONTEXT_SECONDS * SAMPLE_RATE
@@ -155,39 +163,109 @@ def transcribe(samples, recognizer):
         # Привязка кадров к окну приблизительная и не является разметкой границ фонем
         first = round((start - left) * len(ids) / (right - left))
         last = round((end - left) * len(ids) / (right - left))
+        offsets = []
         phones, previous = decode_ctc(
-            ids[first:last], recognizer.vocabulary, recognizer.blank_id, previous,
+            ids[first:last], recognizer.vocabulary, recognizer.blank_id, previous, offsets,
         )
+        if token_times is not None:
+            token_times.extend((left + (first + offset + 0.5) * (right - left) / len(ids)) / SAMPLE_RATE for offset in offsets)
         blocks.append((start / SAMPLE_RATE, end / SAMPLE_RATE, phones))
     return blocks
 
 
-def render_report(source, wav, config, duration, blocks):
+def transcribe_allosaurus(samples, python, selection=None):
+    """Запускает Allosaurus с универсальным или явно ограниченным набором меток."""
+    import numpy as np
+    import wave
+
+    with tempfile.TemporaryDirectory(prefix="glossolalia-allosaurus-") as directory:
+        wav = Path(directory) / "input.wav"
+        output = Path(directory) / "phones.txt"
+        language = "ipa"
+        if selection is not None:
+            inventory = Path(directory) / "inventory.txt"
+            inventory.write_text("\n".join(selection["tokens"]) + "\n", encoding="utf-8")
+            language = str(inventory)
+        with wave.open(str(wav), "wb") as stream:
+            stream.setparams((1, 2, SAMPLE_RATE, 0, "NONE", "not compressed"))
+            stream.writeframes((np.clip(samples, -1, 1) * 32767).astype("<i2").tobytes())
+        subprocess.run(
+            [str(python), "-B", "-X", "utf8", "-m", "allosaurus.run", "--model", "uni2005",
+             "-i", str(wav), "--lang", language, "--timestamp=True", "--topk=1", "--output", str(output)],
+            check=True, capture_output=True,
+        )
+        tokens, times = [], []
+        for line in output.read_text(encoding="utf-8-sig").splitlines():
+            if not line.strip():
+                continue
+            match = re.match(r"^(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\S+)", line)
+            if not match:
+                raise ValueError(f"Неизвестная строка таймстампов Allosaurus: {line[:100]}")
+            times.append(float(match[1]))
+            tokens.append(match[3])
+    return [(0, len(samples) / SAMPLE_RATE, tokens)], times
+
+
+def render_report(source, wav, config, duration, blocks, pause_result=None, token_times=None, selection=None):
     tokens = [phone for _, _, phones in blocks for phone in phones]
+    mode = f"Окна: {CHUNK_SECONDS} с, контекст до {CONTEXT_SECONDS} с с каждой стороны"
+    if config["label"] == "Allosaurus":
+        inventory_name = "ограниченный набор" if selection else "универсальный IPA"
+        mode = f"Режим: {inventory_name} Allosaurus, вся запись"
+
     lines = [
         f"ФОНЕТИЧЕСКАЯ ТРАНСКРИПЦИЯ — {config['label']}",
+        "Формат отчёта: 2",
         f"Файл: {source}", f"WAV: {wav}",
         f"Модель: {config['repository']}", f"Ревизия: {config['revision']}",
         f"Дата: {datetime.now().astimezone().isoformat(timespec='seconds')}",
         f"Длительность: {duration:.3f} с",
         "Обработка: локально, CPU, моно 16 кГц в памяти; исходный WAV не изменён",
-        f"Окна: {CHUNK_SECONDS} с, контекст до {CONTEXT_SECONDS} с с каждой стороны",
-        "Выход: фонетические метки модели, без словаря слов и подсказки языка",
+        mode,
+        ("Выход: фонетические метки модели, ограниченные профилем, без словаря слов" if selection
+         else "Выход: фонетические метки модели, без словаря слов и подсказки языка"),
         "Язык и перевод не установлены; фонетическая точность требует проверки",
         "Метки и диакритики сохранены; ▁ в ZIPA — метка границы из словаря модели",
+    ]
+    if selection is not None:
+        lines.extend(profile_report_lines(selection))
+    if pause_result is not None:
+        pause_config = pause_result["config"]
+        pauses = pause_result["pauses"]
+        lines.extend([
+            f"Паузы: Silero VAD @ {pause_config['revision']}; шаг 0.032 с",
+            f"Пороги пауз: короткая от {pause_config['short_seconds']:g} с; "
+            f"средняя от {pause_config['medium_seconds']:g} с; длинная от {pause_config['long_seconds']:g} с",
+            "Паузы определены по аудио; место вставки между метками приблизительное",
+            "Начальная и конечная паузы также показаны; метки моделей не удаляются",
+        ])
+        if not pause_result["speech_detected"]:
+            lines.append("Речь детектором не обнаружена; это не доказательство отсутствия речи")
+        disputed = sum(any(pause["start"] <= time < pause["end"] for pause in pauses) for time in token_times)
+        if disputed:
+            lines.append(f"Фонетических меток внутри интервалов пауз: {disputed}; сохранены для проверки на слух")
+        lines.extend([
+            "", "=== ТРАНСКРИПЦИЯ С ПАУЗАМИ ===",
+            render_with_pauses(tokens, token_times, pauses) or "(нет фонетических меток)",
+        ])
+        if not pauses:
+            lines.append("Паузы заданной длительности детектором не найдены")
+    if not tokens:
+        lines.insert(2, "Фонетические метки не выданы; это не доказательство тишины")
+    lines.extend([
         "", "=== ПОЛНАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ ===",
-        " ".join(tokens) if tokens else "Фонетические метки не выданы; это не доказательство тишины",
+        " ".join(tokens),
         "", "=== ЧАСТИ ЗАПИСИ ===",
         "Время обозначает окна обработки, а не границы слов или отдельных фонем",
-    ]
+    ])
     for start, end, phones in blocks:
-        lines.extend([f"[{start:.2f}–{end:.2f} с]", " ".join(phones) or "(нет меток)", ""])
+        lines.extend([f"[{start:.2f}–{end:.2f} с]", " ".join(phones), ""])
     return "\n".join(lines) + "\n"
 
 
-def save_report(source, label, text):
+def save_report(source, label, text, profile_id=None):
     """Создаёт TXT без перезаписи, оставляя имя модели в конце названия."""
-    stem = source.stem
+    stem = source.stem + ("_" + profile_id if profile_id else "")
     while True:
         output = source.with_name(f"{stem} ({label}).txt")
         try:
@@ -219,23 +297,55 @@ def validate_installation(directory, config):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--engine", choices=("zipa", "w2v2"), required=True)
+    parser.add_argument("--engine", choices=("zipa", "w2v2", "allosaurus"), required=True)
     parser.add_argument("--runtime", type=Path, required=True)
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--ffmpeg", default="ffmpeg")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--profile", help="Идентификатор экспериментального набора из profiles/*.json")
+    parser.add_argument("--allosaurus-python", type=Path, default=Path.home() / "allosaurus-env" / "Scripts" / "python.exe")
     args = parser.parse_args()
 
+    profile = load_profile(args.profile) if args.profile else None
     config = load_config(args.engine)
     model_directory = args.runtime / args.engine / "model"
-    validate_installation(model_directory, config)
+    if args.engine == "allosaurus":
+        result = subprocess.run(
+            [str(args.allosaurus_python), "-B", "-X", "utf8", "-c",
+             "import importlib.metadata; print(importlib.metadata.version('allosaurus'))"],
+            check=True, capture_output=True,
+        )
+        if result.stdout.decode("utf-8").strip() != "1.0.2":
+            raise ValueError("Для сравнения требуется установленный Allosaurus 1.0.2")
+    else:
+        validate_installation(model_directory, config)
     print(f"Загрузка {config['label']} на CPU...", flush=True)
-    recognizer = Recognizer(args.engine, model_directory)
+    recognizer = None if args.engine == "allosaurus" else Recognizer(args.engine, model_directory)
+    selection = None
+    if profile is not None:
+        if args.engine == "allosaurus":
+            inventory_result = subprocess.run(
+                [str(args.allosaurus_python), "-B", "-X", "utf8", "-m", "allosaurus.bin.list_phone",
+                 "--model", "uni2005", "--lang", "ipa"], check=True, capture_output=True,
+            )
+            phones = inventory_result.stdout.decode("utf-8").split()
+            vocabulary = {index: token for index, token in enumerate(["<blk>"] + phones)}
+            selection = resolve_profile(profile, args.engine, vocabulary)
+        else:
+            selection = resolve_profile(profile, args.engine, recognizer.vocabulary, recognizer.blank_id)
+            recognizer.blocked_ids = selection["blocked_ids"]
+        print("\n".join(profile_report_lines(selection)), flush=True)
+    detector = PauseDetector(args.runtime)
     if args.check:
         import numpy as np
 
         # Короткий сигнал проверяет вычисления модели, а не только чтение её файлов
-        recognizer.predict(np.zeros(SAMPLE_RATE, dtype=np.float32))
+        samples = np.zeros(SAMPLE_RATE, dtype=np.float32)
+        if args.engine == "allosaurus":
+            transcribe_allosaurus(samples, args.allosaurus_python, selection)
+        else:
+            recognizer.predict(samples)
+        detector.detect(samples)
         print(f"Проверка пройдена: {config['repository']} @ {config['revision']}", flush=True)
         return 0
     if args.manifest is None:
@@ -256,9 +366,18 @@ def main():
             wav = prepare_wav(source, args.ffmpeg)
             print(f"Используется WAV: {wav}", flush=True)
             samples = read_audio(wav, args.ffmpeg)
-            blocks = transcribe(samples, recognizer)
-            report = render_report(source, wav, config, len(samples) / SAMPLE_RATE, blocks)
-            output = save_report(source, config["label"], report)
+            pause_result = detector.detect(samples)
+            token_times = []
+            if args.engine == "allosaurus":
+                blocks, token_times = transcribe_allosaurus(samples, args.allosaurus_python, selection)
+            else:
+                blocks = transcribe(samples, recognizer, token_times)
+            if selection is not None:
+                allowed = set(selection["tokens"]) | ({"▁"} if args.engine == "zipa" else set())
+                if any(token not in allowed for _, _, phones in blocks for token in phones):
+                    raise ValueError("Модель выдала метку вне выбранного профиля")
+            report = render_report(source, wav, config, len(samples) / SAMPLE_RATE, blocks, pause_result, token_times, selection)
+            output = save_report(source, config["label"], report, args.profile)
             print(f"Готово: {output}", flush=True)
             print("__GLOSSOLALIA_SAVED__", flush=True)
         except Exception as error:

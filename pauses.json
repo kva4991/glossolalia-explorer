@@ -1,0 +1,10 @@
+{
+  "revision": "60b7ffa243625ebdc1070275a29f18c87843786a",
+  "url": "https://raw.githubusercontent.com/snakers4/silero-vad/60b7ffa243625ebdc1070275a29f18c87843786a/src/silero_vad/data/silero_vad.jit",
+  "sha256": "e1122837f4154c511485fe0b9c64455f7b929c96fbb8d79fbdb336383ebd3720",
+  "speech_threshold": 0.5,
+  "release_threshold": 0.35,
+  "short_seconds": 0.2,
+  "medium_seconds": 0.6,
+  "long_seconds": 1.5
+}
