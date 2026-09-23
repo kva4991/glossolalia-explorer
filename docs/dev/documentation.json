@@ -2,6 +2,34 @@
   "version": 1,
   "documents": [
     {
+      "path": "docs/BUNDLE-V2-REVIEW.md",
+      "title": "Источники и проверка второго бундла",
+      "status": "evidence",
+      "purpose": "Происхождение текстовых гипотез, проверка ссылок и границы выводов",
+      "tags": ["bundle2"]
+    },
+    {
+      "path": "docs/EQUIPMENT.md",
+      "title": "Оборудование и условия записи",
+      "status": "reference",
+      "purpose": "Проверенные сведения об устройстве и метод контрольного сравнения",
+      "tags": ["equipment"]
+    },
+    {
+      "path": "docs/ASR-RESOURCES.md",
+      "title": "Ресурсы распознавания и проверки фонетики",
+      "status": "reference",
+      "purpose": "Источники инструментов, ограничения и план дальнейшей проверки",
+      "tags": ["asrresources"]
+    },
+    {
+      "path": "docs/architecture/decisions/0007-equipment-tracking.md",
+      "title": "ADR-0007: Учёт аудиооборудования",
+      "status": "plan",
+      "purpose": "Предложение сохранять условия записи в метаданных результатов",
+      "tags": []
+    },
+    {
       "path": "docs/LANGUAGE-PROFILES.md",
       "title": "Пользовательский язык для трёх моделей",
       "status": "current",
