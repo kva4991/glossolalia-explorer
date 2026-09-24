@@ -2,6 +2,13 @@
   "version": 1,
   "documents": [
     {
+      "path": "docs/BUNDLE-FULL-REVIEW.md",
+      "title": "Бундл «Ру-ви»: словарные кандидаты и проверка",
+      "status": "reference",
+      "purpose": "Все кандидаты нового бундла, источники и границы многоязычных гипотез",
+      "tags": ["ruvi"]
+    },
+    {
       "path": "docs/BUNDLE-V2-REVIEW.md",
       "title": "Источники и проверка второго бундла",
       "status": "evidence",
