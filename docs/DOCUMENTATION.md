@@ -16,6 +16,8 @@
 | Разрешённые короткие примеры | [LITERATURE](LITERATURE.md) |
 | Повторяющиеся сочетания и история лексических гипотез | [LEXICON](LEXICON.md) |
 | Проверенные религиозные источники и границы ссылок | [BIBLICAL_CONTEXT](BIBLICAL_CONTEXT.md) |
+| Святоотеческие источники различения и границы самооценки | [SPIRITUAL_DISCERNMENT](SPIRITUAL_DISCERNMENT.md) |
+| Предложенная типология и разбор ручного бундла B3 | [GLOSSOLALIA_AS_KEY](GLOSSOLALIA_AS_KEY.md) |
 | Личные гипотезы и сведения для справки | [Для справки (от разработчика)](<для справки (от разработчика).md>) |
 | Будущее Android-приложение | [ANDROID](ANDROID.md) |
 | Причины устойчивых решений | [ADR](architecture/decisions/README.md) |

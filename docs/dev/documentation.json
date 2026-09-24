@@ -2,6 +2,31 @@
   "version": 1,
   "documents": [
     {
+      "path": "docs/SPIRITUAL_DISCERNMENT.md",
+      "title": "Духовное различение: источники и границы выводов",
+      "status": "reference",
+      "purpose": "Атрибуции религиозных источников и границы оценки личного опыта",
+      "tags": [
+        "discernment"
+      ]
+    },
+    {
+      "path": "docs/GLOSSOLALIA_AS_KEY.md",
+      "title": "Глоссолалия как «ключ»: гипотеза и план проверки",
+      "status": "reference",
+      "purpose": "Ручной бундл B3, предложенные функции и ограничения проверки",
+      "tags": [
+        "keyhypothesis"
+      ]
+    },
+    {
+      "path": "docs/architecture/decisions/0008-glossolalia-units.md",
+      "title": "ADR-0008: Типология единиц глоссолалии",
+      "status": "plan",
+      "purpose": "Предложение отделить функциональную типологию от фонетических результатов",
+      "tags": []
+    },
+    {
       "path": "docs/BUNDLE-FULL-REVIEW.md",
       "title": "Бундл «Ру-ви»: словарные кандидаты и проверка",
       "status": "reference",
