@@ -2,6 +2,13 @@
   "version": 1,
   "documents": [
     {
+      "path": "docs/TERMS.md",
+      "title": "Понятийный словарь",
+      "status": "reference",
+      "purpose": "Авторские рабочие определения и границы их применения",
+      "tags": ["terms"]
+    },
+    {
       "path": "docs/SPIRITUAL_DISCERNMENT.md",
       "title": "Духовное различение: источники и границы выводов",
       "status": "reference",
