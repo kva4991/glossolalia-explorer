@@ -2,6 +2,27 @@
   "version": 1,
   "documents": [
     {
+      "path": "ОСНОВАНИЯ.md",
+      "title": "Основания авторской позиции и границы проекта",
+      "status": "reference",
+      "purpose": "Личные положения автора, источники и границы подтверждения",
+      "tags": ["foundations"]
+    },
+    {
+      "path": "docs/CONCEPTS.md",
+      "title": "Семь слов: словарные значения и авторские образы",
+      "status": "reference",
+      "purpose": "Семь языковых понятий и отличие словарного значения от метафоры",
+      "tags": ["concepts"]
+    },
+    {
+      "path": "docs/SILENT_PRAYER.md",
+      "title": "Молитва про себя: сообщения автора и границы аудиометода",
+      "status": "reference",
+      "purpose": "Самоотчёты о внутренней молитве и неприменимость аудиомоделей без звука",
+      "tags": ["silentprayer"]
+    },
+    {
       "path": "docs/TERMS.md",
       "title": "Понятийный словарь",
       "status": "reference",
