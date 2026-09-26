@@ -48,6 +48,15 @@
       ]
     },
     {
+      "path": "docs/GLOSSOLALIA_HISTORIES.md",
+      "title": "Истории молитвы на иных языках",
+      "status": "reference",
+      "purpose": "Рассказы о начале молитвы на иных языках и границы выводов",
+      "tags": [
+        "histories"
+      ]
+    },
+    {
       "path": "docs/architecture/decisions/0008-glossolalia-units.md",
       "title": "ADR-0008: Типология единиц глоссолалии",
       "status": "plan",
@@ -168,7 +177,7 @@
       "path": "docs/LITERATURE.md",
       "title": "Литература проекта: примеры понимания смысла",
       "status": "reference",
-      "purpose": "Короткие авторские примеры и история уточнений",
+      "purpose": "Разрешённые ручные транскрипции, варианты перевода и история уточнений",
       "tags": [
         "examples"
       ]
