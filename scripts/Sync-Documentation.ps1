@@ -117,7 +117,7 @@ foreach ($document in $documents) {
         Add-Issue "$path : title and purpose must be nonempty single-line text without table separators"
     }
     foreach ($tag in @($document.tags)) {
-        if ($tag -cnotmatch '^[a-z][a-z0-9]{2,23}$') { Add-Issue "$path : invalid tag $tag"; continue }
+        if ($tag -cnotmatch '^(?:[a-z][a-z0-9]{2,23}|T[0-9]{5})$') { Add-Issue "$path : invalid tag $tag"; continue }
         if ($tagOwners.ContainsKey($tag)) { Add-Issue "Duplicate tag: $tag" } else { $tagOwners[$tag] = $path }
     }
     if ($path -ceq $mapPath -and $Write) { continue }
@@ -167,7 +167,7 @@ function Test-LocalLink {
 
 foreach ($path in @($contents.Keys)) {
     $body = $contents[$path]
-    foreach ($match in [regex]::Matches($body, '§([a-z][a-z0-9]*)')) {
+    foreach ($match in [regex]::Matches($body, '§([a-z][a-z0-9]*|T[0-9]{5})(?![A-Za-z0-9])')) {
         if (-not $tagOwners.ContainsKey($match.Groups[1].Value)) { Add-Issue "$path : unknown tag $($match.Value)" }
     }
     $definitions = @{}

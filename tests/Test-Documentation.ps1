@@ -43,6 +43,7 @@ try {
     Write-Fixture "private/secret.md" "not Markdown"
     Write-Fixture "personal/secret.md" "not Markdown"
     Write-Fixture "docs/TESTING.md" "# Проверки`n"
+    Write-Fixture "docs/T00001.md" "# §T00001 — Пример`n`nТекст §T00001`n"
     Write-Fixture "docs/Тема (тест).md" "# Тема`n`n## Раздел`n`nТекст §method`n"
     $readme = "# Fixture`n`n[Тема](<docs/Тема (тест).md#раздел>)`n`n[Повтор][topic]`n`n[topic]: <docs/Тема (тест).md>`n"
     Write-Fixture "README.md" $readme
@@ -51,6 +52,7 @@ try {
         documents=@(
             @{path="README.md"; title="Fixture"; status="current"; purpose="Entry"; tags=@("entry")},
             @{path="docs/TESTING.md"; title="Проверки"; status="process"; purpose="Checks"; tags=@("testing")},
+            @{path="docs/T00001.md"; title="§T00001 — Пример"; status="reference"; purpose="Transcription"; tags=@("T00001")},
             @{path="docs/Тема (тест).md"; title="Тема"; status="current"; purpose="Topic"; tags=@("method")},
             @{path="docs/dev/tag-map.md"; title="Карта меток и каталог документов"; status="generated"; purpose="Map"; tags=@()}
         )
@@ -66,6 +68,7 @@ try {
         @{text=($readme + "`n[Broken](missing.md)`n"); error="missing or excluded link"},
         @{text=$readme.Replace("#раздел", "#нет-раздела"); error="missing anchor"},
         @{text=($readme + "`n§unknown`n"); error="unknown tag"},
+        @{text=($readme + "`n§T99999`n"); error="unknown tag"},
         @{text=($readme + "`n# Second`n"); error="expected one H1"},
         @{text=($readme + "`n### Jump`n"); error="heading level jumps"},
         @{text=($readme + "`n" + '```powershell' + "`nhello`n"); error="unclosed code fence"},
@@ -93,7 +96,7 @@ try {
     Write-Fixture ".gitignore" "private/`nnew.md`n"
     Assert-Audit
 
-    $registry.documents[2].tags = @("entry")
+    $registry.documents[3].tags = @("entry")
     Write-Fixture "docs/dev/documentation.json" ($registry | ConvertTo-Json -Depth 6)
     Assert-Audit -ExpectedError "Duplicate tag"
     Write-Fixture "docs/dev/documentation.json" $registryText

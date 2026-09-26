@@ -48,6 +48,20 @@
       ]
     },
     {
+      "path": "docs/READING_LIST.md",
+      "title": "Кандидаты для исследовательской библиотеки",
+      "status": "reference",
+      "purpose": "Предложенные толкователи и справочники с требованием проверки источников",
+      "tags": ["readinglist"]
+    },
+    {
+      "path": "docs/THEORY.md",
+      "title": "Авторская теория глоссолалии как «протокола»",
+      "status": "reference",
+      "purpose": "Авторские предпосылки, гипотезы и границы метафор из THEORY.md от 25.09.2026",
+      "tags": ["theory"]
+    },
+    {
       "path": "docs/GLOSSOLALIA_HISTORIES.md",
       "title": "Истории молитвы на иных языках",
       "status": "reference",
@@ -357,6 +371,249 @@
       "status": "current",
       "purpose": "Причины разделения окружений и формата результатов",
       "tags": []
+    },
+    {
+      "path": "docs/TRANSCRIPTIONS.md",
+      "title": "Указатель транскрипций",
+      "status": "reference",
+      "purpose": "Группы текстов и песен, даты получения и постоянные метки",
+      "tags": [
+        "transcriptions"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00001.md",
+      "title": "§T00001 — Запись 1",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 1",
+      "tags": [
+        "T00001"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00002.md",
+      "title": "§T00002 — Запись 2",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 2",
+      "tags": [
+        "T00002"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00003.md",
+      "title": "§T00003 — Запись 3",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 3",
+      "tags": [
+        "T00003"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00004.md",
+      "title": "§T00004 — Запись 4",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 4",
+      "tags": [
+        "T00004"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00005.md",
+      "title": "§T00005 — Запись 5",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 5",
+      "tags": [
+        "T00005"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00006.md",
+      "title": "§T00006 — Запись 6",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 6",
+      "tags": [
+        "T00006"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00007.md",
+      "title": "§T00007 — B2 — фрагмент 1",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: B2 — фрагмент 1",
+      "tags": [
+        "T00007"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00008.md",
+      "title": "§T00008 — B2 — фрагмент 2",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: B2 — фрагмент 2",
+      "tags": [
+        "T00008"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00009.md",
+      "title": "§T00009 — B2 — фрагмент 3",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: B2 — фрагмент 3",
+      "tags": [
+        "T00009"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00010.md",
+      "title": "§T00010 — RUVI-F1",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: RUVI-F1",
+      "tags": [
+        "T00010"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00011.md",
+      "title": "§T00011 — RUVI-F2",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: RUVI-F2",
+      "tags": [
+        "T00011"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00012.md",
+      "title": "§T00012 — RUVI-F3",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: RUVI-F3",
+      "tags": [
+        "T00012"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00013.md",
+      "title": "§T00013 — RUVI-F4",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: RUVI-F4",
+      "tags": [
+        "T00013"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00014.md",
+      "title": "§T00014 — B3-F1",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: B3-F1",
+      "tags": [
+        "T00014"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00015.md",
+      "title": "§T00015 — Поздний F7",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Поздний F7",
+      "tags": [
+        "T00015"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00016.md",
+      "title": "§T00016 — CHAT25-F5 — «Рувим»",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: CHAT25-F5 — «Рувим»",
+      "tags": [
+        "T00016"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00017.md",
+      "title": "§T00017 — CHAT25-F6 — «Ус-ва-ду»",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: CHAT25-F6 — «Ус-ва-ду»",
+      "tags": [
+        "T00017"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00018.md",
+      "title": "§T00018 — CHAT25-F7 — «Летопись»",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: CHAT25-F7 — «Летопись»",
+      "tags": [
+        "T00018"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00019.md",
+      "title": "§T00019 — Первая песня",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Первая песня",
+      "tags": [
+        "T00019"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00020.md",
+      "title": "§T00020 — Вторая песня",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Вторая песня",
+      "tags": [
+        "T00020"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00021.md",
+      "title": "§T00021 — Новый фрагмент 1 — английская запись",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Новый фрагмент 1 — английская запись",
+      "tags": [
+        "T00021"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00022.md",
+      "title": "§T00022 — Новый фрагмент 2 — IPA",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Новый фрагмент 2 — IPA",
+      "tags": [
+        "T00022"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00023.md",
+      "title": "§T00023 — Новый фрагмент 3 — IPA",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Новый фрагмент 3 — IPA",
+      "tags": [
+        "T00023"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00024.md",
+      "title": "§T00024 — Запись 8 по экспорту переписки",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 8 по экспорту переписки",
+      "tags": [
+        "T00024"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00025.md",
+      "title": "§T00025 — Запись 9 по экспорту переписки",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Запись 9 по экспорту переписки",
+      "tags": [
+        "T00025"
+      ]
+    },
+    {
+      "path": "docs/transcriptions/T00026.md",
+      "title": "§T00026 — Текст сервиса memoai.tech",
+      "status": "reference",
+      "purpose": "Исходник, поэлементный разбор и варианты смысла: Текст сервиса memoai.tech",
+      "tags": [
+        "T00026"
+      ]
     }
   ]
 }
